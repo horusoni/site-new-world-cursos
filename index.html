@@ -269,6 +269,14 @@
             color: white;
             border-color: #3E4095;
         }
+
+        @media (max-width:800px) {
+            .pop-out-img{
+                position: absolute;
+                right: -50px;
+                bottom: -50px;
+            }
+        }
     </style>
 </head>
 
@@ -594,73 +602,7 @@
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('active'));
-        /*
-        const cursos = [
-            { id: "Farmacia", titulo: "Atendente de Farmácia", desc: "Atendimento ao cliente, organização e rotinas ddescricao:"",e farmácia.", cor
-             : "blue", icon: "fa-pills" },
-            { id: "Cuidador", titulo: "Cuidador de Idosos", desc: "Cuidados básicos, bem-estar e acompanhamento ddescricao:"",iário.", cor: "re
-             d", icon: "fa-user-nurse" },
-            { id: "DesignMidia", titulo: "Design Gráfico + Mídia Digital", desc: "Criação visual e gestão de cdescricao:"",onteúdos para redes 
-             sociais.", cor: "blue", icon: "fa-palette" },
-            { id: "Informatica", titulo: "Informática", desc: "Do básico ao avançado em sistemas e ferramentas ddescricao:"",igitais.", cor: "blu
-             e", icon: "fa-desktop" },
-            { id: "Fibra", titulo: "Instalação e Manutenção de Fibra Óptica", desc: "Aprenda instalação, cdescricao:"",onfiguração e 
-             manutenção de redes.", cor: "red", icon: "fa-network-wired" },
-            { id: "Ingles", titulo: "Inglês", desc: "Desenvolva fluência para o dia a dia e mercado de trabalho.", cdescricao:"",or: "blue", ico
-             n: "fa-language" },
-            { id: "ManutencaoCelular", titulo: "Manutenção de Celular e Smartphone", desc: "Conserto, diagnóstico e mdescricao:"",anutenção de dispositivos 
-             móveis.", cor: "blue", icon: "fa-gear" },
-            { id: "MontagemPC", titulo: "Montagem e Configuração de PCs", desc: "Monte, configure e faça manutenção edescricao:"",m computadores.", c
-             or: "red", icon: "fa-desktop" },
-            { id: "Administracao", titulo: "Administração", desc: "Gestão, organização e processos administrativos."descricao:"",, cor: "blue", icon: "
-             fa-briefcase" },
-            { id: "Violao", titulo: "Violão", desc: "Aprenda do básico ao avançado na prática musical.", cor: "descricao:"",red", icon: "fa
-             -guitar" }
-        ];
 
-        const grid = document.getElementById('grid-cursos');
-        grid.innerHTML = cursos.map(c => `
-            <div class="card-course p-8 rounded-[32px] ${c.cor === 'blue' ? 'card-blue' : 'card-red'}" data-tilt>
-                <div class="w-14 h-14 rounded-2xl flex items-center justify-center ${c.cor === 'blue' ? 'bg-blue-50 text-brand-blue' : 'bg-red-50 text-brand-red'} mb-6">
-                    <i class="fas ${c.icon} text-2xl"></i>
-                </div>
-                <h4 class="text-2xl font-bold mb-4">${c.titulo}</h4>
-                <p class="text-gray-500 text-sm mb-8">${c.desc}</p>
-                <button onclick="document.getElementById('select-curso').value='${c.id}'; window.location.href='#contato';" 
-                        class="text-xs font-bold uppercase tracking-widest flex items-center group">
-                    Tenho Interesse <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-all"></i>
-                </button>
-            </div>
-        `).join('');
-
-        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), { max: 10, speed: 400 });
-
-        // Lógica de Arrastar os Stories (Mouse e Touch)
-        const slider = document.getElementById('draggable-stories');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-        });
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        });*/
-
-        //------------------------------
 
         const cursosDet = [
             {
