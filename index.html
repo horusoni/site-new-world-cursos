@@ -208,7 +208,7 @@
             align-items: center;
         }
 
-       .mix-card {
+        .mix-card {
             background: #ffffff;
             border-radius: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -271,7 +271,7 @@
         }
 
         @media (max-width:800px) {
-            .pop-out-img{
+            .pop-out-img {
                 position: absolute;
                 right: -50px;
                 bottom: -50px;
@@ -283,42 +283,70 @@
 <body class="bg-brand-light">
 
     <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center gap-4">
 
-                <a href="/">
-                    <div class="text-xl md:text-2xl font-extrabold tracking-tighter" id="logo-cont">
-
-                        <div >
-                            <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png" alt=""
-                                width="40px" style="margin-right: 10px;">
-                        </div>
-                        <div>
-                            NEW WORLD <span class="text-brand-blue">CURSOS</span><span class="text-brand-red"></span>
-                        </div>
-
+                <!-- LOGO -->
+                <a href="/" class="shrink-0">
+                    <div class="flex items-center gap-2 text-lg font-extrabold tracking-tighter">
+                        <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png"
+                            alt="Logo New World" width="36px">
+                        <span>NEW WORLD <span class="text-brand-blue">CURSOS</span></span>
                     </div>
                 </a>
 
-
-                <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-gray-700">
-                    <a href="#cursos" class="hover:text-brand-blue transition">Todos os Cursos</a>
+                <!-- MENU DESKTOP -->
+                <div class="hidden lg:flex items-center gap-2 text-sm font-semibold text-gray-700">
+                    <a href="#cursos"
+                        class="px-4 py-2 rounded-full hover:bg-gray-100 hover:text-brand-blue transition whitespace-nowrap">
+                        Todos os Cursos
+                    </a>
                     <a href="https://ead.newworldcursos.com.br" target="_blank"
-                        class="flex items-center gap-2 bg-blue-50 text-brand-blue px-4 py-2 rounded-full">
+                        class="flex items-center gap-2 bg-blue-50 text-brand-blue px-4 py-2 rounded-full hover:bg-blue-100 transition whitespace-nowrap">
                         <i class="fas fa-laptop-code"></i> Portal EAD
                     </a>
-                    <a href="#trabalhe-conosco" class="hover:text-brand-blue transition">Envie seu Currículo</a>
-                    <a href="#contato" class="bg-brand-red text-white px-6 py-3 rounded-full btn-glow-red">Quero me
-                        matricular</a>
+                    <a href="/assets/login.html"
+                        class="flex items-center gap-2 bg-amber-50 text-amber-600 px-4 py-2 rounded-full hover:bg-amber-100 transition whitespace-nowrap">
+                        <i class="fas fa-book-open"></i> Área do Aluno
+                    </a>
+                    <a href="#trabalhe-conosco"
+                        class="px-4 py-2 rounded-full hover:bg-gray-100 hover:text-brand-blue transition whitespace-nowrap">
+                        Envie seu Currículo
+                    </a>
+                    <a href="#contato"
+                        class="bg-brand-red text-white px-5 py-2 rounded-full font-bold btn-glow-red whitespace-nowrap">
+                        Quero me matricular
+                    </a>
                 </div>
 
-                <button id="menu-btn" class="lg:hidden text-brand-blue text-2xl"><i class="fas fa-bars"></i></button>
+                <!-- BOTÃO HAMBÚRGUER -->
+                <button id="menu-btn" class="lg:hidden text-brand-blue text-2xl shrink-0">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <div id="mobile-menu" class="lg:hidden flex flex-col space-y-4">
-                <a href="#cursos" class="font-bold text-gray-700">Ver Cursos</a>
-                <a href="https://ead.newworldcursos.com.br" class="font-bold text-brand-blue">Acesso EAD</a>
-                <a href="#trabalhe-conosco" class="font-bold text-gray-700">Envie seu Currículo</a>
-                <a href="#contato" class="font-bold text-brand-red">Matricule-se Agora</a>
+
+            <!-- MENU MOBILE -->
+            <div id="mobile-menu" class="lg:hidden flex flex-col space-y-1">
+                <a href="#cursos"
+                    class="flex items-center gap-3 font-semibold text-gray-700 px-3 py-3 rounded-xl hover:bg-gray-50 transition">
+                    <i class="fas fa-graduation-cap text-brand-blue w-4"></i> Ver Cursos
+                </a>
+                <a href="https://ead.newworldcursos.com.br"
+                    class="flex items-center gap-3 font-semibold text-brand-blue px-3 py-3 rounded-xl hover:bg-blue-50 transition">
+                    <i class="fas fa-laptop-code w-4"></i> Acesso EAD
+                </a>
+                <a href="/assets/login.html"
+                    class="flex items-center gap-3 font-semibold text-amber-600 px-3 py-3 rounded-xl hover:bg-amber-50 transition">
+                    <i class="fas fa-book-open w-4"></i> Zona do Aluno
+                </a>
+                <a href="#trabalhe-conosco"
+                    class="flex items-center gap-3 font-semibold text-gray-700 px-3 py-3 rounded-xl hover:bg-gray-50 transition">
+                    <i class="fas fa-briefcase text-brand-blue w-4"></i> Envie seu Currículo
+                </a>
+                <a href="#contato"
+                    class="flex items-center justify-center gap-2 font-bold text-white bg-brand-red px-4 py-3 rounded-xl mt-2 btn-glow-red transition">
+                    <i class="fas fa-pen"></i> Matricule-se Agora
+                </a>
             </div>
         </nav>
     </header>
@@ -347,21 +375,21 @@
             </div>
         </div>
     </section>
-        
-     <section id="cursos" class="py-24 bg-brand-bg px-6">
+
+    <section id="cursos" class="py-24 bg-brand-bg px-6">
         <div class="container mx-auto">
             <div class="flex justify-between items-end mb-16">
                 <h2 class="text-4xl font-black tracking-tighter">Nossos <span class="text-brand-blue">Cursos</span></h2>
             </div>
 
             <div id="grid-cursosDet" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> </div>
-          
+
         </div>
     </section>
 
-     <section>
+    <section>
 
-        
+
     </section>
 
 
@@ -395,9 +423,9 @@
         </div>
     </section>
 
-   
 
-   
+
+
     <section class="py-24 bg-white px-6 overflow-hidden app-section">
         <div class="container mx-auto">
             <div
@@ -483,7 +511,8 @@
         <div class="container mx-auto max-w-3xl text-center">
             <i class="fas fa-briefcase text-4xl text-brand-blue mb-6"></i>
             <h2 class="text-3xl font-black mb-4 tracking-tighter">Banco de Talentos</h2>
-            <p class="text-gray-500 mb-10">Estamos em busca de profissionais para diversas áreas e empresas parceiras. Envie seu currículo e aumente suas chances de novas oportunidades.</p>
+            <p class="text-gray-500 mb-10">Estamos em busca de profissionais para diversas áreas e empresas parceiras.
+                Envie seu currículo e aumente suas chances de novas oportunidades.</p>
 
             <form id="form-cv" class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 text-left">
                 <div class="grid md:grid-cols-2 gap-4 mb-4">
@@ -608,7 +637,7 @@
             {
                 id: "informaticaBasica",
                 titulo: "Informática Básica",
-                descricao:"Do básico ao avançado em sistemas e ferramentas digitais.",
+                descricao: "Do básico ao avançado em sistemas e ferramentas digitais.",
                 cor: "#3E4095",
                 imagem: "/assets/personas/informatica.png",
                 detalhes: "Digitação, Windows, Word, Excel, PowerPoint, Internet, Corel Draw, Photoshop, Linux, Writer, Calc e Impress."
@@ -616,7 +645,7 @@
             {
                 id: "farmacia",
                 titulo: "Atendente de Farmácia",
-                descricao:"Atendimento organizado, controle de medicamentos e base em farmacologia.",
+                descricao: "Atendimento organizado, controle de medicamentos e base em farmacologia.",
                 cor: "#22C3E6",
                 imagem: "/assets/personas/farmacia.png",
                 detalhes: "Atendimento ao cliente, organização de balcão, leitura de receitas, noções de farmacologia, controle de estoque, dispensação de medicamentos, ética profissional e legislação básica farmacêutica."
@@ -624,7 +653,7 @@
             {
                 id: "cuidador",
                 titulo: "Cuidador de Idosos",
-                descricao:"Formação em atendimento, medicamentos e farmacologia.",
+                descricao: "Formação em atendimento, medicamentos e farmacologia.",
                 cor: "#22B14C",
                 imagem: "/assets/personas/atendente.png",
                 detalhes: "Cuidados básicos com idosos, administração de medicamentos, noções de farmacologia, higiene e conforto, alimentação assistida, mobilização e prevenção de quedas, sinais vitais, primeiros socorros, ética profissional e humanização no atendimento."
@@ -632,7 +661,7 @@
             {
                 id: "design",
                 titulo: "Design Gráfico",
-                descricao:"Criação profissional de artes, logos e impressos.",
+                descricao: "Criação profissional de artes, logos e impressos.",
                 cor: "#C837AB",
                 imagem: "/assets/personas/design.png",
                 detalhes: "Princípios do design, criação de artes digitais, desenvolvimento de logotipos, identidade visual, tipografia, teoria das cores, edição de imagens, materiais para impressão e uso de ferramentas."
@@ -640,7 +669,7 @@
             {
                 id: "fibra",
                 titulo: "Fibra Óptica",
-                descricao:"Treinamento em fusão, instalação e manutenção de redes.",
+                descricao: "Treinamento em fusão, instalação e manutenção de redes.",
                 cor: "#F26522",
                 imagem: "/assets/personas/fibra.png",
                 detalhes: "Fundamentos de fibra óptica, fusão de fibras, instalação de redes FTTH, lançamento e organização de cabos, uso de equipamentos (máquina de fusão, OTDR), manutenção preventiva e corretiva, identificação de falhas, segurança no trabalho e normas técnicas."
@@ -648,7 +677,7 @@
             {
                 id: "ingles",
                 titulo: "Inglês",
-                descricao:"Conversação e gramática aplicadas ao trabalho e situações reais.",
+                descricao: "Conversação e gramática aplicadas ao trabalho e situações reais.",
                 cor: "red",
                 imagem: "/assets/personas/ingles.png",
                 detalhes: "Conversação prática, gramática aplicada, vocabulário para o trabalho, compreensão auditiva (listening), leitura (reading), escrita (writing), pronúncia, situações do dia a dia e comunicação profissional."
@@ -656,7 +685,7 @@
             {
                 id: "manutencaoPc",
                 titulo: "Manutenção de PC's",
-                descricao:"Treinamento em montagem e manutenção de computadores.",
+                descricao: "Treinamento em montagem e manutenção de computadores.",
                 cor: "green",
                 imagem: "/assets/personas/manutencao_pc.png",
                 detalhes: "Montagem e desmontagem de computadores, identificação de hardware, instalação de sistemas operacionais, formatação, diagnóstico e solução de problemas, manutenção preventiva e corretiva, limpeza interna, troca de componentes e noções de redes."
@@ -664,7 +693,7 @@
             {
                 id: "manutencaoCel",
                 titulo: "Manutenção de Celular",
-                descricao:"Treinamento em diagnóstico e manutenção de smartphones.",
+                descricao: "Treinamento em diagnóstico e manutenção de smartphones.",
                 cor: "gray",
                 imagem: "/assets/personas/manutencao_cel.png",
                 detalhes: "Diagnóstico de defeitos, desmontagem e montagem de smartphones, troca de telas e componentes, manutenção preventiva e corretiva, análise de placa, uso de ferramentas técnicas, atualização de software, identificação de falhas e noções de eletrônica básica."
@@ -672,7 +701,7 @@
             {
                 id: "rotinasAdministrativas",
                 titulo: "Administração",
-                descricao:"Treinamento em organização, documentos e processos administrativos.",
+                descricao: "Treinamento em organização, documentos e processos administrativos.",
                 cor: "blue",
                 imagem: "/assets/personas/admin.png",
                 detalhes: "Atendimento ao cliente, assistente administrativo, rotinas de departamento pessoal (DP), assistente financeiro, secretariado, telemarketing, operador de caixa, organização de documentos, controle de processos e noções de gestão empresarial."
@@ -680,7 +709,7 @@
             {
                 id: "violao",
                 titulo: "Violão",
-                descricao:"Curso prático de violão: acordes e músicas completas.",
+                descricao: "Curso prático de violão: acordes e músicas completas.",
                 cor: "gold",
                 imagem: "/assets/personas/musica.png",
                 detalhes: "Postura e posicionamento, acordes básicos e avançados, troca de acordes, ritmos e batidas, leitura de cifras e tablaturas, prática de músicas completas, dedilhado, afinação e técnicas de execução."

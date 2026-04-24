@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login - New World</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    light: '#ffffff',
+                    bg: '#fbfcfd',
+                    text: '#1a1c3d',
+                    blue: '#0E459B',
+                    red: '#ff003c',
+                }
+            }
+        }
+    }
+}
+</script>
+
+<style>
+body {
+    background-color: #fbfcfd;
+    font-family: 'Poppins', sans-serif;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    transition: all 0.3s;
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: #0E459B;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(14, 69, 155, 0.1);
+}
+
+.btn-glow-blue:hover {
+    box-shadow: 0 12px 24px -6px rgba(62, 64, 149, 0.5);
+    transform: translateY(-2px);
+}
+</style>
+
+</head>
+
+<body>
+
+<section class="min-h-screen flex items-center justify-center px-6">
+    <div class="w-full max-w-md">
+
+        <div class="bg-white rounded-[30px] shadow-xl p-10 border border-gray-100">
+
+            <div class="flex items-center justify-center mb-8">
+                <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png" width="50">
+                <span class="ml-3 text-xl font-black">
+                    NEW WORLD <span class="text-brand-blue">CURSOS</span>
+                </span>
+            </div>
+
+            <h2 class="text-3xl font-black text-center mb-2">Acesso às Apostilas</h2>
+            <p class="text-center text-gray-400 text-sm mb-8">Entre para acessar o material</p>
+
+            <form id="loginForm" class="space-y-4">
+
+              
+                <input type="password" id="pass" placeholder="Senha" class="custom-input">
+
+                <p id="errorMsg" class="text-red-500 text-sm hidden"></p>
+
+                <button class="w-full bg-brand-blue text-white py-4 rounded-xl font-bold btn-glow-blue">
+                    Entrar
+                </button>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<script>
+const form = document.getElementById('loginForm');
+const errorMsg = document.getElementById('errorMsg');
+
+// 🔐 CREDENCIAIS
+const USER = "aluno";
+const PASS = "123456";
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const user = "aluno";
+    const pass = document.getElementById('pass').value.trim();
+
+    if(!user || !pass){
+        errorMsg.textContent = "Preencha todos os campos";
+        errorMsg.classList.remove('hidden');
+        return;
+    }
+
+    if(user === USER && pass === PASS){
+
+        localStorage.setItem("logado", "true");
+
+        form.innerHTML = `
+            <div class="text-center py-10">
+                <i class="fas fa-check-circle text-green-500 text-4xl mb-4"></i>
+                <p class="font-bold text-lg">Acesso liberado!</p>
+            </div>
+        `;
+
+        setTimeout(() => {
+            window.location.href = "/assets/apostilas/index.html";
+        }, 1200);
+
+    } else {
+        errorMsg.textContent = "Usuário ou senha incorretos";
+        errorMsg.classList.remove('hidden');
+    }
+});
+</script>
+
+</body>
+</html>

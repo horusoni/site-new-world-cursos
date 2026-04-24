@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Apostila Digital | New World Tech</title>
+
+  <style>
+    :root {
+      --tech-red: #ff1f1f; /* Vermelho mais saturado e tecnológico */
+      --deep-bg: #0a0a0c;
+      --card-bg: #141417;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --text-main: #e0e0e6;
+      --text-muted: #90909a;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      margin: 0;
+      background-color: var(--deep-bg);
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(237, 28, 36, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 90%, rgba(237, 28, 36, 0.03) 0%, transparent 20%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--text-main);
+      font-family: 'SF Mono', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace; /* Fonte Mono para cara de Tech */
+      overflow-x: hidden;
+    }
+
+    /* Header Minimalista e Tech */
+    header {
+      width: 100%;
+      background: rgba(10, 10, 12, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid var(--glass-border);
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+    }
+
+    header h1 span {
+      color: var(--tech-red);
+      font-weight: bold;
+    }
+
+    /* Container Principal */
+    .main-container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 80px 10px 100px 10px; /* Spacing para header e nav fixos */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    /* Viewer com efeito de Profundidade */
+    .viewer-card {
+      background: var(--card-bg);
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      animation: techEntry 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Brilho sutil na borda superior */
+    .viewer-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--tech-red), transparent);
+      opacity: 0.5;
+    }
+
+    canvas {
+      display: block;
+      max-width: 100%;
+      height: auto !important;
+      transition: opacity 0.2s ease;
+    }
+
+    canvas.rendering {
+      opacity: 0.5;
+      filter: blur(2px);
+    }
+
+    /* Navegação Estilo Floating Hub */
+    .nav-bar {
+      background: rgba(20, 20, 23, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 10px 15px;
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      border: 1px solid var(--glass-border);
+      position: fixed;
+      bottom: 20px;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .page-info {
+      font-weight: bold;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      color: var(--text-main);
+      background: var(--glass);
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .btn {
+      background: transparent;
+      color: var(--tech-red);
+      border: 1px solid var(--tech-red);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(255, 31, 31, 0.1);
+    }
+
+    .btn:hover:not(:disabled) {
+      background: var(--tech-red);
+      color: var(--deep-bg);
+      box-shadow: 0 0 20px rgba(255, 31, 31, 0.4);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.9);
+    }
+
+    .btn:disabled {
+      border-color: var(--glass-border);
+      color: var(--text-muted);
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    @keyframes techEntry {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Ajustes Mobile */
+    @media (max-width: 600px) {
+      .nav-bar { gap: 10px; width: auto; max-width: 90%; }
+      .btn { width: 40px; height: 40px; }
+      .page-info { font-size: 0.75rem; padding: 6px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>New World Cursos - <span>Informática</span></h1>
+  </header>
+
+  <div class="main-container">
+    <div class="viewer-card">
+      <canvas id="pdf-render"></canvas>
+    </div>
+
+    <div class="nav-bar">
+      <button class="btn" id="prev-page" onclick="prevPage()">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+
+      <div class="page-info" id="page-num-display">PRC_</div>
+
+      <button class="btn" id="next-page" onclick="nextPage()">
+        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+  <script>
+    const url = "../pdf/Informatica.pdf";
+
+    let pdfDoc = null,
+        pageNum = 1,
+        pageIsRendering = false,
+        pageNumIsPending = null;
+
+    const canvas = document.getElementById('pdf-render');
+    const ctx = canvas.getContext('2d');
+
+    const renderPage = num => {
+      pageIsRendering = true;
+      canvas.classList.add('rendering'); // Efeito visual de loading
+
+      pdfDoc.getPage(num).then(page => {
+        // Responsividade Tech
+        const containerWidth = document.querySelector('.viewer-card').clientWidth;
+        const unscaledViewport = page.getViewport({ scale: 1 });
+        const scale = containerWidth / unscaledViewport.width;
+        
+        const viewport = page.getViewport({ scale: scale });
+
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        page.render(renderContext).promise.then(() => {
+          pageIsRendering = false;
+          canvas.classList.remove('rendering');
+          if (pageNumIsPending !== null) {
+            renderPage(pageNumIsPending);
+            pageNumIsPending = null;
+          }
+        });
+
+        // Formatação de página estilo terminal (01, 02...)
+        const totalPages = pdfDoc.numPages.toString().padStart(2, '0');
+        const currentPage = num.toString().padStart(2, '0');
+        document.getElementById('page-num-display').textContent = `PÁGINA ${currentPage} / ${totalPages}`;
+        
+        document.getElementById('prev-page').disabled = num <= 1;
+        document.getElementById('next-page').disabled = num >= pdfDoc.numPages;
+      });
+    };
+
+    const queueRenderPage = num => {
+      if (pageIsRendering) {
+        pageNumIsPending = num;
+      } else {
+        renderPage(num);
+      }
+    };
+
+    function prevPage() {
+      if (pageNum <= 1) return;
+      pageNum--;
+      queueRenderPage(pageNum);
+    }
+
+    function nextPage() {
+      if (pageNum >= pdfDoc.numPages) return;
+      pageNum++;
+      queueRenderPage(pageNum);
+    }
+
+    // Debounce no resize para performance
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (pdfDoc) queueRenderPage(pageNum);
+      }, 100);
+    });
+
+    // Inicialização
+    pdfjsLib.getDocument(url).promise.then(pdf => {
+      pdfDoc = pdf;
+      // Pequeno delay para a animação de entrada
+      setTimeout(() => renderPage(pageNum), 200);
+    });
+  </script>
+
+</body>
+</html>
