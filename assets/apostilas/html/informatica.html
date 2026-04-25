@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,7 +8,8 @@
 
   <style>
     :root {
-      --tech-red: #ff1f1f; /* Vermelho mais saturado e tecnológico */
+      --tech-red: #ff1f1f;
+      /* Vermelho mais saturado e tecnológico */
       --deep-bg: #0a0a0c;
       --card-bg: #141417;
       --glass: rgba(255, 255, 255, 0.03);
@@ -16,12 +18,15 @@
       --text-muted: #90909a;
     }
 
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       margin: 0;
       background-color: var(--deep-bg);
-      background-image: 
+      background-image:
         radial-gradient(circle at 10% 10%, rgba(237, 28, 36, 0.05) 0%, transparent 20%),
         radial-gradient(circle at 90% 90%, rgba(237, 28, 36, 0.03) 0%, transparent 20%);
       display: flex;
@@ -29,7 +34,8 @@
       align-items: center;
       min-height: 100vh;
       color: var(--text-main);
-      font-family: 'SF Mono', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace; /* Fonte Mono para cara de Tech */
+      font-family: 'SF Mono', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+      /* Fonte Mono para cara de Tech */
       overflow-x: hidden;
     }
 
@@ -64,7 +70,8 @@
     .main-container {
       width: 100%;
       max-width: 1200px;
-      padding: 80px 10px 100px 10px; /* Spacing para header e nav fixos */
+      padding: 80px 10px 100px 10px;
+      /* Spacing para header e nav fixos */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -81,7 +88,7 @@
       position: relative;
       display: flex;
       justify-content: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       animation: techEntry 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
@@ -89,7 +96,10 @@
     .viewer-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 1px;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
       background: linear-gradient(90deg, transparent, var(--tech-red), transparent);
       opacity: 0.5;
     }
@@ -121,7 +131,7 @@
       position: fixed;
       bottom: 20px;
       z-index: 1000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .page-info {
@@ -167,25 +177,79 @@
       cursor: not-allowed;
     }
 
-    .btn svg { width: 20px; height: 20px; fill: currentColor; }
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    #download {
+      border: 1px solid red;
+      display: flex;
+      padding: 12px;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      top: 30px;
+      border-radius: 5px;
+
+      background-color: rgba(0, 0, 0, 0.3);
+      /* importante: transparência */
+      backdrop-filter: blur(10px);
+      /* 100px é exagerado */
+
+      -webkit-backdrop-filter: blur(30px);
+      /* suporte Safari */
+
+      flex-direction: column;
+      font-size: 10px;
+      color: #ff0000;
+      text-decoration: none;
+      
+    }
 
     @keyframes techEntry {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* Ajustes Mobile */
     @media (max-width: 600px) {
-      .nav-bar { gap: 10px; width: auto; max-width: 90%; }
-      .btn { width: 40px; height: 40px; }
-      .page-info { font-size: 0.75rem; padding: 6px 12px; }
+      .nav-bar {
+        gap: 10px;
+        width: auto;
+        max-width: 90%;
+      }
+
+      .btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .page-info {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <h1>New World Cursos - <span>Informática</span></h1>
+    <h1>New World Cursos - <span>Informática</span> <a id="download" href="../pdf/informatica.pdf" target="_blank"
+        download> <img src="https://img.icons8.com/?size=100&id=59783&format=png&color=ff0000" alt="" width="20px">
+
+      </a>
+    </h1>
   </header>
 
   <div class="main-container">
@@ -195,13 +259,17 @@
 
     <div class="nav-bar">
       <button class="btn" id="prev-page" onclick="prevPage()">
-        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
+        </svg>
       </button>
 
       <div class="page-info" id="page-num-display">PRC_</div>
 
       <button class="btn" id="next-page" onclick="nextPage()">
-        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+        </svg>
       </button>
     </div>
   </div>
@@ -212,9 +280,9 @@
     const url = "../pdf/Informatica.pdf";
 
     let pdfDoc = null,
-        pageNum = 1,
-        pageIsRendering = false,
-        pageNumIsPending = null;
+      pageNum = 1,
+      pageIsRendering = false,
+      pageNumIsPending = null;
 
     const canvas = document.getElementById('pdf-render');
     const ctx = canvas.getContext('2d');
@@ -228,7 +296,7 @@
         const containerWidth = document.querySelector('.viewer-card').clientWidth;
         const unscaledViewport = page.getViewport({ scale: 1 });
         const scale = containerWidth / unscaledViewport.width;
-        
+
         const viewport = page.getViewport({ scale: scale });
 
         canvas.height = viewport.height;
@@ -252,7 +320,7 @@
         const totalPages = pdfDoc.numPages.toString().padStart(2, '0');
         const currentPage = num.toString().padStart(2, '0');
         document.getElementById('page-num-display').textContent = `PÁGINA ${currentPage} / ${totalPages}`;
-        
+
         document.getElementById('prev-page').disabled = num <= 1;
         document.getElementById('next-page').disabled = num >= pdfDoc.numPages;
       });
@@ -296,4 +364,5 @@
   </script>
 
 </body>
+
 </html>
