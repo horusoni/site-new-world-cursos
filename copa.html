@@ -1,11 +1,422 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Álbum Copa 2026 | New World Cursos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #C9A227;
+            --blue: #0E459B;
+            --red: #E8001C;
+            --green: #009B3A;
+            --bg: #0a0a1a;
+            --white: #ffffff;
+            --gray: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ─── ANIMATED BG ─── */
+        .bg-layer {
+            position: fixed; inset: 0; z-index: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 10% 20%, rgba(14,69,155,0.35) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 90% 80%, rgba(232,0,28,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,215,0,0.08) 0%, transparent 70%),
+                #0a0a1a;
+            animation: bgPulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.15); }
+        }
+
+        .bg-layer::after {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70'%3E%3Cpolygon points='30,2 58,17 58,53 30,68 2,53 2,17' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 60px 70px;
+        }
+
+        /* ─── WRAPPER ─── */
+        .wrapper {
+            position: relative; z-index: 1;
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            text-align: center;
+            padding: 30px 0 20px;
+            animation: slideDown 0.7s ease both;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* CORREÇÃO NA LOGO AQUI */
+        .logo-nw {
+            background: white; /* Fundo branco para destacar a logo original */
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            width: 65px; height: 65px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; /* Garante que a imagem não saia do círculo */
+            box-shadow: 0 0 20px rgba(255,215,0,0.4);
+            animation: glowPulse 2.5s ease-in-out infinite alternate;
+        }
+
+        .logo-nw img {
+            width: 85%; /* Ajuste de tamanho da imagem dentro do círculo */
+            height: 85%;
+            object-fit: contain;
+        }
+
+        @keyframes glowPulse {
+            from { box-shadow: 0 0 15px rgba(255,215,0,0.3); }
+            to { box-shadow: 0 0 30px rgba(255,215,0,0.6); }
+        }
+
+        .trophy { font-size: 52px; line-height: 1; filter: drop-shadow(0 0 12px rgba(255,215,0,0.8)); animation: trophyFloat 3s ease-in-out infinite; }
+        @keyframes trophyFloat {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        .fifa-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--red), #a00015);
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 14vw, 80px);
+            line-height: 0.95;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        h1 span.gold { color: var(--gold); text-shadow: 0 0 30px rgba(255,215,0,0.5); }
+        h1 span.red { color: var(--red); }
+
+        .subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .rainbow-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #009B3A, #FFD700, #E8001C, #0E459B, #FFD700);
+            background-size: 200% 100%;
+            animation: rainbowSlide 3s linear infinite;
+            margin: 20px 0;
+        }
+
+        @keyframes rainbowSlide {
+            from { background-position: 0% 0%; }
+            to { background-position: 200% 0%; }
+        }
+
+        /* ─── CARDS ─── */
+        .cards { display: flex; flex-direction: column; gap: 12px; animation: fadeUp 0.8s ease 0.3s both; }
+
+        @keyframes fadeUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card.unavailable {
+            opacity: 0.6;
+            filter: grayscale(0.8);
+            cursor: not-allowed;
+        }
+
+        .sold-out-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            background: var(--red);
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            padding: 5px 20px;
+            border: 2px solid white;
+            font-size: 18px;
+            letter-spacing: 2px;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        .card.envelope { border-color: rgba(255,215,0,0.3); }
+        .card.envelope .price { color: #22C55E; }
+        .card.brochura { border-color: rgba(14,69,155,0.4); }
+        .card.brochura .price { color: #5a9fff; }
+
+        .card-icon { font-size: 40px; min-width: 56px; text-align: center; }
+        .card-info { flex: 1; }
+        .card-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+        .card-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); line-height: 1.1; }
+
+        .price-col { text-align: right; }
+        .price-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+        .price { font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1; }
+
+        /* ─── WHATSAPP BUTTON ─── */
+        .whatsapp-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; padding: 18px 24px; background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900;
+            border-radius: 20px; text-decoration: none; transition: 0.3s;
+            box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+            margin-top: 25px;
+        }
+        .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(37,211,102,0.5); }
+
+        /* ─── CURSOS SECTION ─── */
+        .section-divider { margin: 40px 0 30px; text-align: center; position: relative; }
+        .section-divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent); }
+        .section-divider-label { position: relative; background: var(--bg); padding: 0 14px; font-family: 'Bebas Neue', sans-serif; color: var(--gold); letter-spacing: 4px; font-size: 16px; }
+
+        .cursos-grid { display: flex; flex-direction: column; gap: 15px; }
+        .curso-pill { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            border-radius: 16px; 
+            padding: 18px; 
+            position: relative; 
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .curso-pill:hover { background: rgba(255,255,255,0.08); transform: scale(1.02); }
+        .curso-pill::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; }
+        
+        .curso-nome { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 4px; }
+        .curso-desc { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+        .matricula-cta {
+            margin-top: 30px; padding: 25px; background: rgba(14,69,155,0.2); 
+            border: 1px solid var(--blue); border-radius: 20px; text-align: center;
+        }
+        .matricula-btn {
+            display: inline-block; padding: 12px 30px; background: var(--gold); 
+            color: #000; font-weight: 900; border-radius: 12px; text-decoration: none; margin-top: 15px;
+        }
+
+        .footer { text-align: center; margin-top: 40px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); font-size: 12px; }
+    </style>
 </head>
 <body>
+<<<<<<< HEAD
     <p>teste 1</p>
+=======
+
+<div class="bg-layer"></div>
+
+<div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="badge-row">
+            <div class="logo-nw">
+                <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png" alt="New World Logo">
+            </div>
+            <div class="trophy">🏆</div>
+            <div class="logo-nw">
+                <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png" alt="New World Logo">
+            </div>
+        </div>
+        <div class="fifa-tag">FIFA WORLD CUP 2026™</div>
+        <h1><span class="gold">TABELA</span> <span class="red">DE</span><br>PREÇOS</h1>
+        <p class="subtitle">Álbum Panini Oficial · New World Cursos </p>
+    </header>
+
+    <div class="rainbow-bar"></div>
+
+    <!-- PRICE CARDS -->
+    <section class="cards">
+        <div class="card envelope">
+            <div class="card-icon">📦</div>
+            <div class="card-info">
+                <div class="card-label">Figurinhas</div>
+                <div class="card-name">Envelope<br>7 Cromos</div>
+            </div>
+            <div class="price-col">
+                <span class="price-tag">a partir de</span>
+                <div class="price">R$ 7,00</div>
+            </div>
+        </div>
+
+        <div class="card brochura">
+            <div class="card-icon">📗</div>
+            <div class="card-info">
+                <div class="card-label">Álbum</div>
+                <div class="card-name">Capa<br>Brochura</div>
+            </div>
+            <div class="price-col">
+                <span class="price-tag">por apenas</span>
+                <div class="price">R$ 24,90</div>
+            </div>
+        </div>
+
+        <div class="card unavailable">
+            <div class="sold-out-badge">DISPONÍVEL EM BREVE</div>
+            <div class="card-icon">📘</div>
+            <div class="card-info">
+                <div class="card-label">Álbum</div>
+                <div class="card-name">Capa Dura<br>Padrão</div>
+            </div>
+            <div class="price-col"><div class="price">R$ 74,90</div></div>
+        </div>
+
+        <div class="card unavailable">
+            <div class="sold-out-badge">DISPONÍVEL EM BREVE</div>
+            <div class="card-icon">🥈</div>
+            <div class="card-info">
+                <div class="card-label">Álbum</div>
+                <div class="card-name">Capa Dura<br>Prata</div>
+            </div>
+            <div class="price-col"><div class="price">R$ 79,90</div></div>
+        </div>
+
+        <div class="card unavailable">
+            <div class="sold-out-badge">DISPONÍVEL EM BREVE</div>
+            <div class="card-icon">🥇</div>
+            <div class="card-info">
+                <div class="card-label">Álbum</div>
+                <div class="card-name">Capa Dura<br>Ouro</div>
+            </div>
+            <div class="price-col"><div class="price">R$ 79,90</div></div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP CTA -->
+    <a href="https://wa.me/556136666613?text=Ol%C3%A1!%20Quero%20comprar%20o%20%C3%A1lbum%20da%20Copa%202026%20na%20New%20World!" class="whatsapp-btn" target="_blank">
+        📱 Pedir Álbum/Figurinhas agora
+    </a>
+
+    <!-- SEÇÃO DE CURSOS -->
+    <div class="section-divider">
+        <span class="section-divider-label">🎓 NOSSOS CURSOS</span>
+    </div>
+
+    <div class="cursos-grid">
+        <div class="curso-pill" style="border-left: 5px solid #3E4095;">
+            <div class="curso-nome" style="color: #8b8fff;">Informática Básica</div>
+            <div class="curso-desc">Curso abrangente com foco em digitação, Windows, Word, Excel, PowerPoint, Internet, Corel Draw, Photoshop, Linux, Writer, Calc e Impress.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid #22C3E6;">
+            <div class="curso-nome" style="color: #22C3E6;">Atendente de Farmácia</div>
+            <div class="curso-desc">Aprenda rotinas de atendimento, organização de medicamentos e noções de farmacologia.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid #22B14C;">
+            <div class="curso-nome" style="color: #22B14C;">Cuidador de Idosos</div>
+            <div class="curso-desc">Capacitação completa para cuidados de higiene, saúde e bem-estar na terceira idade.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid #C837AB;">
+            <div class="curso-nome" style="color: #C837AB;">Design Gráfico</div>
+            <div class="curso-desc">Criação de artes para redes sociais, logos e materiais impressos profissionais.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid #F26522;">
+            <div class="curso-nome" style="color: #F26522;">Fibra Óptica</div>
+            <div class="curso-desc">Treinamento prático em fusão, instalação e manutenção de redes de internet.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid red;">
+            <div class="curso-nome" style="color: #ff6b6b;">Inglês</div>
+            <div class="curso-desc">Conversação e gramática focada em situações reais e mercado de trabalho.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid green;">
+            <div class="curso-nome" style="color: #4ade80;">Manutenção de PC's</div>
+            <div class="curso-desc">Aprenda técnicas práticas de montagem, manutenção preventiva e corretiva de computadores.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid gray;">
+            <div class="curso-nome" style="color: #cbd5e1;">Manutenção de Celular</div>
+            <div class="curso-desc">Aprenda diagnóstico, troca de telas, baterias e manutenção completa de smartphones.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid blue;">
+            <div class="curso-nome" style="color: #93c5fd;">Administração</div>
+            <div class="curso-desc">Desenvolva competências práticas em organização, gestão de documentos, atendimento e processos administrativos.</div>
+        </div>
+
+        <div class="curso-pill" style="border-left: 5px solid gold;">
+            <div class="curso-nome" style="color: var(--gold);">Violão</div>
+            <div class="curso-desc">Aprenda técnicas de violão desde os acordes básicos até a execução de músicas completas.</div>
+        </div>
+    </div>
+
+    <div class="matricula-cta">
+        <p style="color: white; font-weight: 700;">Interessado em algum curso?</p>
+        <p style="color: rgba(255,255,255,0.6); font-size: 13px;">Bolsas de estudo exclusivas para colecionadores!</p>
+        <a href="https://wa.me/556136136666?text=Ol%C3%A1!%20Tenho%20interesse%20em%20um%20curso%20da%20New%20World!" class="matricula-btn" target="_blank">
+            Quero informações sobre cursos
+        </a>
+    </div>
+
+    <footer class="footer">
+        <p>NEW WORLD CURSOS © 2026</p>
+        <p>Águas Lindas de Goiás</p>
+    </footer>
+
+</div>
 </body>
 </html>
