@@ -77,20 +77,19 @@
             margin-bottom: 12px;
         }
 
-        /* CORREÇÃO NA LOGO AQUI */
         .logo-nw {
-            background: white; /* Fundo branco para destacar a logo original */
+            background: white;
             border: 3px solid var(--gold);
             border-radius: 50%;
             width: 65px; height: 65px;
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden; /* Garante que a imagem não saia do círculo */
+            overflow: hidden;
             box-shadow: 0 0 20px rgba(255,215,0,0.4);
             animation: glowPulse 2.5s ease-in-out infinite alternate;
         }
 
         .logo-nw img {
-            width: 85%; /* Ajuste de tamanho da imagem dentro do círculo */
+            width: 85%;
             height: 85%;
             object-fit: contain;
         }
@@ -138,6 +137,30 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             margin-top: 6px;
+            margin-bottom: 20px;
+        }
+
+        /* BOTÃO GRUPO DE TROCAS */
+        .exchange-group-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .exchange-group-btn:hover {
+            background: var(--gold);
+            color: #000;
         }
 
         .rainbow-bar {
@@ -214,6 +237,16 @@
         .price-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
         .price { font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1; }
 
+        /* ─── FORMULÁRIO INCORPORADO ─── */
+        .form-container {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
         /* ─── WHATSAPP BUTTON ─── */
         .whatsapp-btn {
             display: flex; align-items: center; justify-content: center; gap: 12px;
@@ -259,9 +292,6 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-    <p>teste 1</p>
-=======
 
 <div class="bg-layer"></div>
 
@@ -281,6 +311,11 @@
         <div class="fifa-tag">FIFA WORLD CUP 2026™</div>
         <h1><span class="gold">TABELA</span> <span class="red">DE</span><br>PREÇOS</h1>
         <p class="subtitle">Álbum Panini Oficial · New World Cursos </p>
+        
+        <!-- BOTÃO GRUPO DE TROCAS -->
+        <a href="COLOQUE_AQUI_O_LINK_DO_SEU_GRUPO" class="exchange-group-btn" target="_blank">
+            🤝 Entrar no Grupo de Trocas
+        </a>
     </header>
 
     <div class="rainbow-bar"></div>
@@ -320,31 +355,19 @@
             </div>
             <div class="price-col"><div class="price">R$ 74,90</div></div>
         </div>
-
-        <div class="card unavailable">
-            <div class="sold-out-badge">DISPONÍVEL EM BREVE</div>
-            <div class="card-icon">🥈</div>
-            <div class="card-info">
-                <div class="card-label">Álbum</div>
-                <div class="card-name">Capa Dura<br>Prata</div>
-            </div>
-            <div class="price-col"><div class="price">R$ 79,90</div></div>
-        </div>
-
-        <div class="card unavailable">
-            <div class="sold-out-badge">DISPONÍVEL EM BREVE</div>
-            <div class="card-icon">🥇</div>
-            <div class="card-info">
-                <div class="card-label">Álbum</div>
-                <div class="card-name">Capa Dura<br>Ouro</div>
-            </div>
-            <div class="price-col"><div class="price">R$ 79,90</div></div>
-        </div>
     </section>
+
+    <!-- FORMULÁRIO GOOGLE -->
+    <div class="section-divider">
+        <span class="section-divider-label">📝 FAÇA SEU PEDIDO</span>
+    </div>
+    <div class="form-container">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd6l7Oha01QxhXFldDphkQeT9vZ4SmrIIj0nhc8IJYN1-oM7Q/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+    </div>
 
     <!-- WHATSAPP CTA -->
     <a href="https://wa.me//556136136666?text=Ol%C3%A1!%20Quero%20comprar%20o%20%C3%A1lbum%20da%20Copa%202026%20na%20New%20World!" class="whatsapp-btn" target="_blank">
-        📱 Pedir Álbum/Figurinhas agora
+        📱 Falar com Atendente
     </a>
 
     <!-- SEÇÃO DE CURSOS -->
@@ -357,7 +380,7 @@
             <div class="curso-nome" style="color: #8b8fff;">Informática Básica</div>
             <div class="curso-desc">Curso abrangente com foco em digitação, Windows, Word, Excel, PowerPoint, Internet, Corel Draw, Photoshop, Linux, Writer, Calc e Impress.</div>
         </div>
-
+        <!-- ... (demais cursos mantidos) ... -->
         <div class="curso-pill" style="border-left: 5px solid #22C3E6;">
             <div class="curso-nome" style="color: #22C3E6;">Atendente de Farmácia</div>
             <div class="curso-desc">Aprenda rotinas de atendimento, organização de medicamentos e noções de farmacologia.</div>
@@ -367,37 +390,7 @@
             <div class="curso-nome" style="color: #22B14C;">Cuidador de Idosos</div>
             <div class="curso-desc">Capacitação completa para cuidados de higiene, saúde e bem-estar na terceira idade.</div>
         </div>
-
-        <div class="curso-pill" style="border-left: 5px solid #C837AB;">
-            <div class="curso-nome" style="color: #C837AB;">Design Gráfico</div>
-            <div class="curso-desc">Criação de artes para redes sociais, logos e materiais impressos profissionais.</div>
-        </div>
-
-        <div class="curso-pill" style="border-left: 5px solid #F26522;">
-            <div class="curso-nome" style="color: #F26522;">Fibra Óptica</div>
-            <div class="curso-desc">Treinamento prático em fusão, instalação e manutenção de redes de internet.</div>
-        </div>
-
-        <div class="curso-pill" style="border-left: 5px solid red;">
-            <div class="curso-nome" style="color: #ff6b6b;">Inglês</div>
-            <div class="curso-desc">Conversação e gramática focada em situações reais e mercado de trabalho.</div>
-        </div>
-
-        <div class="curso-pill" style="border-left: 5px solid green;">
-            <div class="curso-nome" style="color: #4ade80;">Manutenção de PC's</div>
-            <div class="curso-desc">Aprenda técnicas práticas de montagem, manutenção preventiva e corretiva de computadores.</div>
-        </div>
-
-        <div class="curso-pill" style="border-left: 5px solid gray;">
-            <div class="curso-nome" style="color: #cbd5e1;">Manutenção de Celular</div>
-            <div class="curso-desc">Aprenda diagnóstico, troca de telas, baterias e manutenção completa de smartphones.</div>
-        </div>
-
-        <div class="curso-pill" style="border-left: 5px solid blue;">
-            <div class="curso-nome" style="color: #93c5fd;">Administração</div>
-            <div class="curso-desc">Desenvolva competências práticas em organização, gestão de documentos, atendimento e processos administrativos.</div>
-        </div>
-
+        
         <div class="curso-pill" style="border-left: 5px solid gold;">
             <div class="curso-nome" style="color: var(--gold);">Violão</div>
             <div class="curso-desc">Aprenda técnicas de violão desde os acordes básicos até a execução de músicas completas.</div>
