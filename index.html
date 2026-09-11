@@ -34,23 +34,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
     <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1613768947005283');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-  
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1613768947005283');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <script>
         tailwind.config = {
@@ -132,14 +131,16 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         }
 
         .story-video-card {
-            min-width: 280px;
+            min-width: 240px;
+            max-width: 280px;
+            width: 100%;
             aspect-ratio: 9/16;
             border-radius: 28px;
             position: relative;
             padding: 5px;
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             scroll-snap-align: center;
-            pointer-events: none;
+            flex-shrink: 0;
         }
 
         .story-inner {
@@ -148,13 +149,30 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
             border-radius: 24px;
             overflow: hidden;
             background: #000;
-            pointer-events: auto;
+            position: relative;
+            cursor: pointer;
         }
 
         .story-inner iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .video-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+            transition: opacity 0.3s;
+        }
+
+        .story-inner.playing .video-thumb {
+            opacity: 0;
+            pointer-events: none;
         }
 
         /* Inputs Personalizados */
@@ -182,9 +200,9 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         }
 
         #mobile-menu.active {
-            max-height: 500px;
+            max-height: 600px;
             opacity: 1;
-            padding: 1.5rem;
+            padding: 1.5rem 0;
         }
 
         /* Estilo Adicional para Nova Seção do App */
@@ -195,30 +213,6 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
 
         .app-section:hover .app-mockup {
             transform: translateY(-10px) rotate(-2deg);
-        }
-
-
-        .story-inner {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .video-thumb {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 2;
-            /* Fica na frente do vídeo */
-            transition: opacity 0.3s;
-        }
-
-        /* Quando clicar, a thumb some e revela o vídeo */
-        .story-inner.playing .video-thumb {
-            opacity: 0;
-            pointer-events: none;
         }
 
         #logo-cont {
@@ -234,7 +228,6 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid #f0f0f0;
             overflow: hidden;
-            /* Importante para conter o blob e a imagem */
             position: relative;
         }
 
@@ -246,6 +239,7 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
             bottom: -20px;
             right: -20px;
             z-index: 1;
+            pointer-events: none;
         }
 
         .mix-card:hover .blob-shape {
@@ -261,12 +255,10 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
             overflow: hidden;
         }
 
-        /* AJUSTE AQUI: Removido max-height fixo. O grid resolve a altura. */
         .card-active .curso-detalhes {
             opacity: 1;
             margin-top: 15px;
             max-height: 500px;
-            /* Um valor alto o suficiente para qualquer texto */
         }
 
         .pop-out-img {
@@ -288,64 +280,61 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
             color: white;
             border-color: #3E4095;
         }
-
-        @media (max-width:800px) {
-            .pop-out-img {
-                position: absolute;
-                right: -50px;
-                bottom: -50px;
-            }
-        }
     </style>
 </head>
 
-<body class="bg-brand-light">
+<body class="bg-brand-light min-h-screen flex flex-col justify-between">
 
     <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <nav class="container mx-auto px-6 py-3">
+        <nav class="container mx-auto px-4 md:px-6 py-3">
             <div class="flex justify-between items-center gap-4">
 
                 <!-- LOGO -->
                 <a href="/" class="shrink-0">
-                    <div class="flex items-center gap-2 text-lg font-extrabold tracking-tighter">
+                    <div class="flex items-center gap-2 text-base sm:text-lg font-extrabold tracking-tighter">
                         <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png"
-                            alt="Logo New World" width="36px">
+                            alt="Logo New World" class="w-8 h-8 sm:w-9 sm:h-9 object-contain">
                         <span>NEW WORLD <span class="text-brand-blue">CURSOS</span></span>
                     </div>
                 </a>
 
                 <!-- MENU DESKTOP -->
-                <div class="hidden lg:flex items-center gap-2 text-sm font-semibold text-gray-700">
+                <div class="hidden xl:flex items-center gap-2 text-xs xl:text-sm font-semibold text-gray-700 flex-wrap">
                     <a href="#cursos"
-                        class="px-4 py-2 rounded-full hover:bg-gray-100 hover:text-brand-blue transition whitespace-nowrap">
+                        class="px-3 py-2 rounded-full hover:bg-gray-100 hover:text-brand-blue transition whitespace-nowrap">
                         Todos os Cursos
                     </a>
                     <a href="https://ead.newworldcursos.com.br" target="_blank"
-                        class="flex items-center gap-2 bg-blue-50 text-brand-blue px-4 py-2 rounded-full hover:bg-blue-100 transition whitespace-nowrap">
+                        class="flex items-center gap-2 bg-blue-50 text-brand-blue px-3 py-2 rounded-full hover:bg-blue-100 transition whitespace-nowrap">
                         <i class="fas fa-laptop-code"></i> Portal EAD
                     </a>
                     <a href="/assets/login.html"
-                        class="flex items-center gap-2 bg-amber-50 text-amber-600 px-4 py-2 rounded-full hover:bg-amber-100 transition whitespace-nowrap">
+                        class="flex items-center gap-2 bg-amber-50 text-amber-600 px-3 py-2 rounded-full hover:bg-amber-100 transition whitespace-nowrap">
                         <i class="fas fa-book-open"></i> Área do Aluno
                     </a>
+                    <!-- NOVO BOTÃO CARTEIRINHA DIGITAL -->
+                    <a href="/assets/login.html"
+                        class="flex items-center gap-2 bg-indigo-50 text-indigo-600 px-3 py-2 rounded-full hover:bg-indigo-100 transition whitespace-nowrap">
+                        <i class="fas fa-id-card"></i> Carteirinha Digital
+                    </a>
                     <a href="#trabalhe-conosco"
-                        class="px-4 py-2 rounded-full hover:bg-gray-100 hover:text-brand-blue transition whitespace-nowrap">
+                        class="px-3 py-2 rounded-full hover:bg-gray-100 hover:text-brand-blue transition whitespace-nowrap">
                         Envie seu Currículo
                     </a>
                     <a href="#contato"
-                        class="bg-brand-red text-white px-5 py-2 rounded-full font-bold btn-glow-red whitespace-nowrap">
+                        class="bg-brand-red text-white px-4 py-2 rounded-full font-bold btn-glow-red whitespace-nowrap">
                         Quero me matricular
                     </a>
                 </div>
 
                 <!-- BOTÃO HAMBÚRGUER -->
-                <button id="menu-btn" class="lg:hidden text-brand-blue text-2xl shrink-0">
+                <button id="menu-btn" class="xl:hidden text-brand-blue text-2xl shrink-0 p-2 focus:outline-none" aria-label="Abrir Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
 
             <!-- MENU MOBILE -->
-            <div id="mobile-menu" class="lg:hidden flex flex-col space-y-1">
+            <div id="mobile-menu" class="xl:hidden flex flex-col space-y-1">
                 <a href="#cursos"
                     class="flex items-center gap-3 font-semibold text-gray-700 px-3 py-3 rounded-xl hover:bg-gray-50 transition">
                     <i class="fas fa-graduation-cap text-brand-blue w-4"></i> Ver Cursos
@@ -357,6 +346,11 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
                 <a href="/assets/login.html"
                     class="flex items-center gap-3 font-semibold text-amber-600 px-3 py-3 rounded-xl hover:bg-amber-50 transition">
                     <i class="fas fa-book-open w-4"></i> Área do Aluno
+                </a>
+                <!-- NOVO BOTÃO CARTEIRINHA DIGITAL MOBILE -->
+                <a href="/assets/login.html"
+                    class="flex items-center gap-3 font-semibold text-indigo-600 px-3 py-3 rounded-xl hover:bg-indigo-50 transition">
+                    <i class="fas fa-id-card w-4"></i> Carteirinha Digital
                 </a>
                 <a href="#trabalhe-conosco"
                     class="flex items-center gap-3 font-semibold text-gray-700 px-3 py-3 rounded-xl hover:bg-gray-50 transition">
@@ -370,51 +364,45 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         </nav>
     </header>
 
-    <section class="pt-32 pb-20 px-6 bg-brand-bg">
-        <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section class="pt-28 md:pt-36 pb-12 md:pb-20 px-4 md:px-6 bg-brand-bg">
+        <div class="container mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div data-aos="fade-right">
-                <h1 class="text-5xl md:text-7xl font-extrabold text-brand-text leading-tight mb-6 tracking-tighter">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-brand-text leading-tight mb-6 tracking-tighter">
                     Prepare-se para o <span class="text-brand-blue">Mercado Digital.</span>
                 </h1>
-                <p class="text-gray-500 text-lg mb-8 max-w-lg">Cursos práticos de tecnologia, gestão e idiomas com foco
+                <p class="text-gray-500 text-base md:text-lg mb-8 max-w-lg">Cursos práticos de tecnologia, gestão e idiomas com foco
                     real em empregabilidade em Águas Lindas.</p>
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-col sm:flex-row flex-wrap gap-4">
                     <a href="#cursos"
-                        class="bg-brand-blue text-white px-8 py-4 rounded-xl font-bold btn-glow-blue">Conhecer
+                        class="bg-brand-blue text-white px-8 py-4 rounded-xl font-bold btn-glow-blue text-center">Conhecer
                         Cursos</a>
                     <a href="https://wa.me/556136136666"
-                        class="bg-white text-brand-blue border border-gray-200 px-8 py-4 rounded-xl font-bold flex items-center gap-2">
+                        class="bg-white text-brand-blue border border-gray-200 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 text-center">
                         <i class="fab fa-whatsapp"></i> Falar com Consultor
                     </a>
                 </div>
             </div>
             <div class="hidden md:block" data-aos="zoom-in">
                 <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png"
-                    class="w-2/3 mx-auto opacity-20 grayscale" alt="">
+                    class="w-2/3 max-w-sm mx-auto opacity-20 grayscale object-contain" alt="Logo marca d'água">
             </div>
         </div>
     </section>
 
-    <section id="cursos" class="py-24 bg-brand-bg px-6">
+    <section id="cursos" class="py-16 md:py-24 bg-brand-bg px-4 md:px-6">
         <div class="container mx-auto">
-            <div class="flex justify-between items-end mb-16">
-                <h2 class="text-4xl font-black tracking-tighter">Nossos <span class="text-brand-blue">Cursos</span></h2>
+            <div class="flex justify-between items-end mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-black tracking-tighter">Nossos <span class="text-brand-blue">Cursos</span></h2>
             </div>
 
-            <div id="grid-cursosDet" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> </div>
+            <div id="grid-cursosDet" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"> </div>
 
         </div>
     </section>
 
-    <section>
-
-
-    </section>
-
-
-    <section class="py-20 bg-white overflow-hidden">
-        <div class="container mx-auto px-6">
-            <h3 class="text-center text-3xl font-black mb-12 tracking-tighter">Sucesso de quem já <span
+    <section class="py-16 md:py-20 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 md:px-6">
+            <h3 class="text-center text-2xl md:text-3xl font-black mb-8 md:mb-12 tracking-tighter">Sucesso de quem já <span
                     class="text-brand-blue">chegou lá</span></h3>
             <div class="story-container" id="draggable-stories">
 
@@ -438,7 +426,7 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
                     </div>
                 </div>
 
-                 <div class="story-video-card">
+                <div class="story-video-card">
                     <div class="story-inner" onclick="this.classList.add('playing')">
                         <img src="https://instagram.fgyn11-1.fna.fbcdn.net/v/t51.82787-15/670150206_18173969683399420_2997916908433735508_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=106&ig_cache_key=Mzg3MzAyNTEyNDQ1MTA2MTYzMg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjU0MHg5NjAuc2RyLkMzIn0%3D&_nc_ohc=pj2PDEqafc8Q7kNvwFb6OtP&_nc_oc=Adp9hqsp8KEPzKG3WDCKcmdqrYf3wB7ZSJOVueLQfJIyop97Pq7I4KZiYwlzY08xid7mBVeCZQlwmqjfeM6wjB0F&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fgyn11-1.fna&_nc_gid=WLl3e0GqFkzhCvz0GwFMbQ&_nc_ss=7a22e&oh=00_Af2mKz1RUW78mgMq3Iq8JEMPaJuVY-lKmRuZly0S_corwg&oe=69F2EB8C"
                             class="video-thumb" alt="Thumbnail">
@@ -452,66 +440,63 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         </div>
     </section>
 
-
-
-
-    <section class="py-24 bg-white px-6 overflow-hidden app-section">
+    <section class="py-16 md:py-24 bg-white px-4 md:px-6 overflow-hidden app-section">
         <div class="container mx-auto">
             <div
-                class="bg-brand-blue rounded-[40px] p-8 md:p-20 relative flex flex-col md:flex-row items-center gap-12 shadow-2xl overflow-hidden">
+                class="bg-brand-blue rounded-3xl md:rounded-[40px] p-6 sm:p-10 md:p-16 xl:p-20 relative flex flex-col md:flex-row items-center gap-8 md:gap-12 shadow-2xl overflow-hidden">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 blur-[100px] rounded-full -mr-20 -mt-20"></div>
 
-                <div class="md:w-3/5 text-white z-10" data-aos="fade-up">
+                <div class="w-full md:w-3/5 text-white z-10 text-center md:text-left" data-aos="fade-up">
                     <span
-                        class="bg-blue-400/20 text-blue-200 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest">Experiência
+                        class="bg-blue-400/20 text-blue-200 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-4">Experiência
                         Mobile</span>
-                    <h2 class="text-4xl md:text-6xl font-black mt-6 mb-8 tracking-tighter leading-tight">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black mb-6 tracking-tighter leading-tight">
                         Sua vida acadêmica na palma da mão com nosso <span class="text-blue-300">App oficial.</span>
                     </h2>
-                    <p class="text-blue-100 text-lg mb-10 max-w-xl leading-relaxed">
+                    <p class="text-blue-100 text-base md:text-lg mb-8 max-w-xl leading-relaxed mx-auto md:mx-0">
                         Acesse conteúdos extras, acompanhe suas notas e frequência, gerencie parcelas e pagamentos e
                         assista às suas videoaulas onde e quando quiser com o App New World.
                     </p>
-                    <div class="flex flex-wrap gap-5">
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
                         <a href="/app.html"
-                            class="bg-white text-brand-blue px-10 py-5 rounded-2xl font-bold flex items-center gap-3 hover:bg-gray-100 transition-all btn-glow-blue text-lg">
+                            class="w-full sm:w-auto bg-white text-brand-blue px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-gray-100 transition-all btn-glow-blue text-base md:text-lg">
                             <i class="fas fa-rocket"></i> Explorar o Aplicativo
                         </a>
-                        <div class="flex items-center gap-4 text-2xl opacity-50">
+                        <div class="flex items-center gap-4 text-2xl opacity-50 justify-center">
                             <i class="fab fa-apple"></i>
                             <i class="fab fa-google-play text-xl"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="md:w-2/5 relative" data-aos="fade-left">
+                <div class="w-full md:w-2/5 relative flex justify-center" data-aos="fade-left">
                     <div class="relative z-10">
                         <img src="https://newworld-teste.netlify.app/assets/images/Logo%20Marca%20(1).png"
-                            class="app-mockup w-48 md:w-64 mx-auto brightness-200 opacity-60" alt="App Mockup">
+                            class="app-mockup w-36 sm:w-48 md:w-64 mx-auto brightness-200 opacity-60 object-contain" alt="App Mockup">
                     </div>
                     <div
-                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-20">
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500 rounded-full blur-3xl opacity-20">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contato" class="py-24 bg-brand-bg px-6">
+    <section id="contato" class="py-16 md:py-24 bg-brand-bg px-4 md:px-6">
         <div class="container mx-auto max-w-5xl">
-            <div class="bg-brand-blue rounded-[40px] overflow-hidden shadow-2xl flex flex-col md:flex-row">
-                <div class="md:w-1/2 p-12 text-white flex flex-col justify-center">
-                    <h2 class="text-4xl font-black mb-6 tracking-tighter">Inicie sua jornada hoje.</h2>
-                    <p class="text-blue-100 mb-8 leading-relaxed">Preencha os dados e um consultor de carreira entrará
+            <div class="bg-brand-blue rounded-3xl md:rounded-[40px] overflow-hidden shadow-2xl flex flex-col md:flex-row">
+                <div class="w-full md:w-1/2 p-8 sm:p-12 text-white flex flex-col justify-center">
+                    <h2 class="text-3xl sm:text-4xl font-black mb-6 tracking-tighter">Inicie sua jornada hoje.</h2>
+                    <p class="text-blue-100 mb-8 leading-relaxed text-sm sm:text-base">Preencha os dados e um consultor de carreira entrará
                         em contato para validar sua bolsa de estudos.</p>
                     <div class="space-y-4">
-                        <div class="flex items-center gap-4"><i class="fas fa-check-circle"></i><span>Certificação
+                        <div class="flex items-center gap-4"><i class="fas fa-check-circle"></i><span class="text-sm sm:text-base">Certificação
                                 Reconhecida</span></div>
-                        <div class="flex items-center gap-4"><i class="fas fa-check-circle"></i><span>Aulas 100%
+                        <div class="flex items-center gap-4"><i class="fas fa-check-circle"></i><span class="text-sm sm:text-base">Aulas 100%
                                 Práticas</span></div>
                     </div>
                 </div>
-                <div class="md:w-1/2 bg-white p-12 space-y-4">
+                <div class="w-full md:w-1/2 bg-white p-8 sm:p-12 space-y-4">
                     <input type="text" id="nome-compl" placeholder="Seu Nome Completo" class="custom-input" required>
                     <input type="tel" id="numero" placeholder="Seu WhatsApp (com DDD)" class="custom-input" required>
                     <select id="select-curso" class="custom-input" required>
@@ -536,15 +521,15 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <section id="trabalhe-conosco" class="py-24 bg-white px-6">
+    <section id="trabalhe-conosco" class="py-16 md:py-24 bg-white px-4 md:px-6">
         <div class="container mx-auto max-w-3xl text-center">
             <i class="fas fa-briefcase text-4xl text-brand-blue mb-6"></i>
             <h2 class="text-3xl font-black mb-4 tracking-tighter">Banco de Talentos</h2>
-            <p class="text-gray-500 mb-10">Estamos em busca de profissionais para diversas áreas e empresas parceiras.
+            <p class="text-gray-500 mb-8 md:mb-10 text-sm sm:text-base">Estamos em busca de profissionais para diversas áreas e empresas parceiras.
                 Envie seu currículo e aumente suas chances de novas oportunidades.</p>
 
-            <form id="form-cv" class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 text-left">
-                <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <form id="form-cv" class="bg-white p-6 sm:p-8 rounded-3xl shadow-lg border border-gray-100 text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <input id="nome" type="text" placeholder="Nome" class="custom-input" required>
                     <input id="email" type="email" placeholder="E-mail" class="custom-input" required>
                 </div>
@@ -562,9 +547,9 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <footer class="bg-white border-t border-gray-100 pt-20 pb-8 px-6">
+    <footer class="bg-white border-t border-gray-100 pt-16 md:pt-20 pb-8 px-4 md:px-6">
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
 
                 <div class="space-y-6">
                     <div class="text-2xl font-black tracking-tighter">
@@ -593,6 +578,7 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
                         <li><a href="#cursos" class="hover:text-brand-blue transition">Nossos Cursos</a></li>
                         <li><a href="https://ead.newworldcursos.com.br" class="hover:text-brand-blue transition">Portal
                                 do Aluno (EAD)</a></li>
+                        <li><a href="/assets/login.html" class="hover:text-brand-blue transition">Carteirinha Digital</a></li>
                         <li><a href="#trabalhe-conosco" class="hover:text-brand-blue transition">Envie seu Currículo</a>
                         </li>
                     </ul>
@@ -660,7 +646,6 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('active'));
-
 
         const cursosDet = [
             {
@@ -743,9 +728,7 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
                 imagem: "/assets/personas/musica.png",
                 detalhes: "Postura e posicionamento, acordes básicos e avançados, troca de acordes, ritmos e batidas, leitura de cifras e tablaturas, prática de músicas completas, dedilhado, afinação e técnicas de execução."
             }
-
         ];
-
 
         function toggleCard(id) {
             const cards = document.querySelectorAll('.mix-card');
@@ -763,18 +746,18 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
         function renderCursosDet() {
             const grid = document.getElementById('grid-cursosDet');
             grid.innerHTML = cursosDet.map(c => `
-                <div id="card-${c.id}" class="mix-card group p-8 cursor-pointer min-h-[180px]" onclick="toggleCard('${c.id}')">
+                <div id="card-${c.id}" class="mix-card group p-6 sm:p-8 cursor-pointer min-h-[180px]" onclick="toggleCard('${c.id}')">
                     
                     <svg class="blob-shape w-32 h-32 md:w-48 md:h-48" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                         <path fill="${c.cor}" d="M44.7,-76.4C58.2,-69.2,70.1,-58.5,78.2,-45.3C86.3,-32.1,90.6,-16.1,88.7,-0.9C86.9,14.2,79,28.4,69.5,41.2C60.1,54,49.1,65.4,35.9,72.3C22.7,79.2,7.3,81.6,-8.4,79.2C-24.1,76.8,-40.1,69.7,-53.2,59C-66.3,48.2,-76.5,33.9,-81.4,18.1C-86.2,2.3,-85.7,-15.1,-79.1,-30.3C-72.6,-45.5,-60,-58.5,-45.8,-65.4C-31.5,-72.3,-15.8,-73.2,0.3,-73.8C16.4,-74.4,31.2,-74.7,44.7,-76.4Z" transform="translate(100 100)" />
                     </svg>
 
-                    <div class="relative z-20 grid grid-cols-1 md:grid-cols-[1.5fr,1fr] gap-4 items-center">
+                    <div class="relative z-20 grid grid-cols-1 sm:grid-cols-[1.5fr,1fr] gap-4 items-center">
                         
                         <div class="flex flex-col justify-between h-full">
                             <div>
                                 <p class="text-[10px] font-bold uppercase text-gray-400 mb-1">Curso</p>
-                                <h3 class="text-xl font-black leading-tight mb-2" style="color: ${c.cor}">${c.titulo}</h3>
+                                <h3 class="text-lg sm:text-xl font-black leading-tight mb-2" style="color: ${c.cor}">${c.titulo}</h3>
                                 <p class="text-xs text-gray-500 mb-4">${c.descricao}</p>
                                 
                                 <div class="curso-detalhes">
@@ -790,8 +773,8 @@ src="https://www.facebook.com/tr?id=1613768947005283&ev=PageView&noscript=1"
                             </div>
                         </div>
 
-                        <div class="flex items-end justify-center md:justify-end h-full min-h-[120px]">
-                            <img src="${c.imagem}" alt="${c.titulo}" class="pop-out-img w-full max-w-[120px] md:max-w-none h-auto object-contain object-bottom">
+                        <div class="flex items-end justify-center sm:justify-end h-full min-h-[120px]">
+                            <img src="${c.imagem}" alt="${c.titulo}" class="pop-out-img w-full max-w-[100px] sm:max-w-[120px] h-auto object-contain object-bottom">
                         </div>
                     </div>
 
