@@ -643,6 +643,21 @@
     <script>
         AOS.init({ once: true });
 
+          async function validarControlador() {
+            try {
+                const resposta = await fetch("https://controlador-six.vercel.app/validar");
+                const dados = await resposta.json();
+
+                if (dados.visible?.visible === false) {
+                    window.location.href = "/notfound404";
+                }
+            } catch (erro) {
+                console.error("Erro ao validar controlador:", erro);
+            }
+        }
+
+        validarControlador();
+
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('active'));
